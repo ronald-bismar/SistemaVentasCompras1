@@ -12,7 +12,6 @@ class BD
     function insertar($valoresEntrada)
     {
         $valoresEntrada['fecha'] = date("Y-m-d H:i:s");
-
         $valoresEntrada['estado'] = 1;
         //sacamos los keys del array
         $campos = \array_keys($valoresEntrada);

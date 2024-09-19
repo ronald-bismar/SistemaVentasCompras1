@@ -36,17 +36,21 @@ class Compra
     {
         require_once "modelo/CompraModelo.php";
         require_once "modelo/ProductoModelo.php";
-        
         $compraModelo = new CompraModelo();
         $productoModelo = new ProductoModelo();
         $compras = $compraModelo->seleccionar('*', 'estado = 1');
         
-        foreach ($compras as &$compra) {
+        foreach($compras as &$compra) {
             $id_producto = $compra['id_producto'];
             $producto = $productoModelo->seleccionar('*', "estado = 1 AND id_producto = $id_producto");
-        
+            
+            if (!empty($producto)) {
                 $compra['nombre_producto'] = $producto[0]['nombre'];
                 $compra['foto'] = $producto[0]['foto'];
+            } else {
+                $compra['nombre_producto'] = 'Desconocido';
+                $compra['foto'] = 'default.jpg';
+            }
         }
 
         // Paginación
@@ -55,11 +59,21 @@ class Compra
         $numeroVueltas = ceil($total / $cantidadElementosPagina);
         $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
         $inicio = ($pagina - 1) * $cantidadElementosPagina;
-        $compras = array_slice($compras, $inicio, $cantidadElementosPagina);
 
+        // Verificar que el índice de inicio no exceda el total de compras
+        if ($inicio >= $total) {
+            $inicio = 0; // Reiniciar al inicio si el índice supera el total
+            $pagina = 1; // Establecer página a la primera si ocurre un problema
+        }
+
+        // Obtener el subconjunto de compras basado en la paginación
+        $compras = array_slice($compras, $inicio, $cantidadElementosPagina);
+        
+        // Renderizar la vista
         $vista = "vista/compra/listado.php";
         require_once "vista/cargador.php";
     }
+    
 
     function modificar()
     {
