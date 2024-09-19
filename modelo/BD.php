@@ -12,6 +12,7 @@ class BD
     function insertar($valoresEntrada)
     {
         $valoresEntrada['fecha'] = date("Y-m-d H:i:s");
+
         $valoresEntrada['estado'] = 1;
         //sacamos los keys del array
         $campos = \array_keys($valoresEntrada);
@@ -24,7 +25,7 @@ class BD
 
         $consulta = "INSERT INTO $this->nombreTabla
             ($campos) VALUES($valores)";
-            echo $consulta;
+            // echo $consulta;
             $respuesta = $this->conexion->query($consulta);
             return $respuesta;
     }

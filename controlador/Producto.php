@@ -1,34 +1,21 @@
 <?php
 class Producto
 {
-    //atributos
-
-
-    //metodos|
     function nuevo()
     {
-        // echo "soy el metodo nuevo producto";
-        $vista = "vista/producto/nuevo.php"; // tiene el formulario
-        require_once "vista/cargador.php"; //contiene la plantilla
+        $vista = "vista/producto/nuevo.php"; 
+        require_once "vista/cargador.php"; 
     }
 
     function guardar()
     {
-        // echo "soy el metodo guardar producto";
-        // 1er Recibir la informacion
+   
         $codigo = $_POST['codigo'];
         $nombre = $_POST['nombre'];
         $precio = $_POST['precio'];
         $descripcion = $_POST['descripcion'];
         $foto = $_FILES['foto'];
-        // 2do Revisar los valores recibidos
-        // echo $codigo . "<br>";
-        // echo $nombre . "<br>";
-        // echo $precio . "<br>";
-        // echo $descripcion . "<br>";
-        //echo $foto."<br>";
-        // var_dump($foto);
-        //verificar el archivo (imagen)
+
 
         if ($foto['error'] != 0) {
             $mensaje = "Error al cargar la imagen";
@@ -45,9 +32,8 @@ class Producto
             require_once "vista/cargador.php";
             return;
         }
-        if ($foto['size'] <= 4 * 1024 * 1024) { //verificando que el archivo en
-            //byte tengaun maximo de 2mb
-            //guardar en la carpeta imagenes/productos
+        if ($foto['size'] <= 4 * 1024 * 1024) {
+
             $nombreArchivo = $foto['name'];
             $nombreArchivo = date("Y_m_d_H_i_s") . $nombreArchivo;
             copy($foto['tmp_name'], 'imagenes/productos/' . $nombreArchivo);
@@ -76,7 +62,7 @@ class Producto
             }
         } else {
             // echo "Error en el tamaño de la imagen";
-            $mensaje = "exisitio un error al subir el archivo";
+            $mensaje = "existio un error al subir el archivo";
             $vista = "vista/producto/mensaje.php";
             require_once "vista/cargador.php";
             return;

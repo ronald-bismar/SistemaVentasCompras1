@@ -1,48 +1,69 @@
-<h3 class="text-center">REGISTRAR NUEVA COMPRA</h3>
-<form action="index.php/?c=producto&m=guardar" method="post" enctype="multipart/form-data" class="">
-    Cantidad:
-    <input type="text" name="cantidad" class="form-control">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Disponibles</title>
+    <!-- Incluye Bootstrap CSS desde un CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card {
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            overflow: hidden;  
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    Producto:
-    <select name="tipo_producto" id="tipo_producto" class="form-control" onchange="actualizarCampos()">
-        <?php
-         $i = $inicio;
-         foreach ($productos as $producto) {
-             $i++;
-             $nombreProducto = $producto['nombre'];
-             $precioProducto = $producto['precio']; // Precio del producto
-             $descripcionProducto = $producto['descripcion']; // Descripción del producto
-        ?>
-        <option
-            value="<?php echo htmlspecialchars(json_encode(['nombre' => $nombreProducto, 'precio' => $precioProducto, 'descripcion' => $descripcionProducto])); ?>">
-            <?php echo $nombreProducto ?>
-        </option>
-        <?php
-         }
-         ?>
-    </select>
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
 
-    Precio del Producto:
-    <input type="number" id="precio" name="precio" class="form-control">
+        .card-body {
+            padding: 1.25rem;
+        }
 
-    Descripción del producto:
-    <div class="mb-3">
-        <textarea class="form-control" id="descripcion" name="descripcion" rows="2"></textarea>
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-text {
+            font-size: 1rem;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+
+        .col-md-4 {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h3 class="text-center mb-4">Productos Disponibles</h3>
+    <div class="container">
+        <div class="row">
+            <?php foreach ($productos as $producto): ?>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-light">
+                    <img src="imagenes/productos/<?php echo $producto['foto']; ?>" class="card-img-top" alt="Imagen del producto">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $producto['nombre']; ?></h5>
+                        <p class="card-text"><?php echo $producto['descripcion']; ?></p>
+                        <p class="card-text"><strong>Precio:</strong> $<?php echo number_format($producto['precio'], 2); ?></p>
+                        <a href="./?c=Compra&m=mostrarFormularioCompra&id_producto=<?php echo $producto['id_producto']; ?>" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
     </div>
-
-    <div class="text-center">
-        <input type="submit" value="Comprar" class="btn btn-primary">
-    </div>
-</form>
-
-<script>
-function actualizarCampos() {
-    // Obtener el valor del producto seleccionado
-    var select = document.getElementById("tipo_producto");
-    var productoSeleccionado = JSON.parse(select.value);
-
-    // Actualizar los campos con los datos del producto seleccionado
-    document.getElementById("precio").value = productoSeleccionado.precio;
-    document.getElementById("descripcion").value = productoSeleccionado.descripcion;
-}
-</script>
+</body>
+</html>

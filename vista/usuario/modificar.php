@@ -1,29 +1,20 @@
-<h3 class="text-center">MODIFICAR PRODUCTO</h3>
-<form action="index.php/?c=producto&m=actualizar" method="post" enctype="multipart/form-data" class="">
+<h3 class="text-center">MODIFICAR USUARIO</h3>
+<form action="index.php/?c=Usuario&m=actualizar" method="post" enctype="multipart/form-data" class="">
     <!-- mandamos el id del controlador  -->
     <input type="hidden" name="id" value="<?php echo $id ?>">
     
-    Codigo de Producto:
-    <input type="text" name="codigo" class="form-control" value="<?php echo $producto['codigo'] ?>" required>
+    Apellido Paterno:
+    <input type="text" name="apellido_paterno" class="form-control" value="<?php echo $usuario['apellido_paterno'] ?>" required>
 
-    Nombre del Producto:
-    <input type="text" name="nombre" class="form-control" value="<?php echo $producto['nombre'] ?>" required>
+    Apellido Materno:
+    <input type="text" name="apellido_materno" class="form-control" value="<?php echo $usuario['apellido_materno'] ?>" required>
 
-    Precio del Producto:
-    <input type="number" name="precio" class="form-control" value="<?php echo $producto['precio'] ?>" required>
+    Nombres:
+    <input type="text" name="nombres" class="form-control" value="<?php echo $usuario['nombres'] ?>" required>
 
-    Descripción del producto:
-    <div class="mb-3">
-        <textarea class="form-control" id="descripcion" name="descripcion" rows="3"><?php echo $producto['descripcion'] ?></textarea>
-    </div>
 
-    Foto del producto:<br>
-    <img src="imagenes/productos/<?php echo $producto['foto'] ?>" alt="" style="width:150px;height:auto;"><br><br>
-    Selecciona imagen para modificar
-    <input type="file" name="foto" class="form-control"><br>
-
-    <input type="hidden" name="fotoActual" value="<?php echo $producto['foto']; ?>">
-
+    Usuario:
+    <input type="text" name="usuario" class="form-control" value="<?php echo $usuario['usuario'] ?>" required>
 
     <div class="text-center">
         <input type="submit" value="Modificar" class="btn btn-primary">

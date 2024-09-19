@@ -1,13 +1,13 @@
 <body>
-    <h3 class="">LISTA DE PRODUCTOS</h3>
+    <h3 class="">LISTA DE COMPRAS</h3>
     <table class="table table-dark table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Codigo</th>
+                <th scope="col">Codigo compra</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Descripcion</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Fecha de Compra</th>
                 <th scope="col">Foto</th>
                 <th scope="col">Acciones</th>
             </tr>
@@ -15,29 +15,29 @@
         <tbody>
             <?php
             $i = $inicio;
-            foreach ($productos as $producto) {
+            foreach ($compras as $compra) {
                 $i++;
             ?>
                 <tr>
                     <th scope="row"><?php echo $i ?></th>
-                    <td><?php echo $producto['codigo'] ?></td>
-                    <td><?php echo $producto['nombre'] ?></td>
-                    <td><?php echo $producto['precio'] ?></td>
-                    <td><?php echo $producto['descripcion'] ?></td>
-                    <td><img src="imagenes/productos/<?php echo $producto['foto'] ?>" width="30px" height="30px"></td>
+                    <td><?php echo $compra['id_compra'] ?></td>
+                    <td><?php echo $compra['nombre_producto'] ?></td>
+                    <td><?php echo $compra['cantidad'] ?></td>
+                    <td><?php echo $compra['fecha'] ?></td>
+                    <td><img src="imagenes/productos/<?php echo $compra['foto'] ?>" width="30px" height="30px"></td>
                     <td>
                         <!-- botones de las acciones -->
-                        <a href="imagenes/productos/<?php echo $producto['foto'] ?>" width="100px" height="100px" target="_blank" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-picture"></i></a>
+                        <a href="imagenes/productos/<?php echo $compra['foto'] ?>" width="100px" height="100px" target="_blank" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-picture"></i></a>
 
-                        <a href="./?c=Producto&m=modificar&id=<?php echo $producto['id_producto'] ?>" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i></a>
-                        <a href="./?c=Producto&m=eliminar&id=<?php echo $producto['id_producto'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de que desea eliminar este producto?');"><i class="glyphicon glyphicon-trash"></i></a>
+                        <a href="./?c=Compra&m=modificar&id=<?php echo $compra['id_compra'] ?>" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a href="./?c=Compra&m=eliminar&id=<?php echo $compra['id_compra'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de que desea eliminar este compra?');"><i class="glyphicon glyphicon-trash"></i></a>
 
                         <!-- <button class="btn btn-warning">
                             <i class="glyphicon glyphicon-pencil"></i>
                         </button>
-                        <form action="?c=producto&m=eliminar&id=<?php //echo $producto['codigo']; 
+                        <form action="?c=compra&m=eliminar&id=<?php //echo $compra['codigo']; 
                                                                 ?>" method="GET" style="display:inline;">
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro de que desea eliminar este producto?');">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro de que desea eliminar este compra?');">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </button>
                         </form> -->
@@ -48,7 +48,7 @@
     </table>
     <ul class="pagination">
         <li class="page-item">
-            <a class="page-link" href="./?c=Producto&m=listar&pagina=1" aria-label="Previous">
+            <a class="page-link" href="./?c=Compra&m=listar&pagina=1" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
@@ -57,13 +57,13 @@
 
         ?>
             <li class="page-item <?php echo ($pagina == $i) ? 'active' : ''; ?>"><a class="page-link"
-                    href="./?c=Producto&m=listar&pagina=<?php echo $i ?>">
+                    href="./?c=Compra&m=listar&pagina=<?php echo $i ?>">
                     <?php echo $i ?> </a></li>
         <?php
         }
         ?>
         <li class="page-item">
-            <a class="page-link" href="./?c=Producto&m=listar&pagina=<?php echo $numeroVueltas?>" aria-label="Next">
+            <a class="page-link" href="./?c=Compra&m=listar&pagina=<?php echo $numeroVueltas?>" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>
