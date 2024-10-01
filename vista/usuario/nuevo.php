@@ -1,24 +1,22 @@
-<h3 class="text-center"> REGISTRAR NUEVO PRODUCTO</h3>
-<form action="index.php/?c=producto&m=guardar" method="post" enctype="multipart/form-data" class="">
-    Codigo de Producto:
-    <input type="text" name="codigo" class="form-control">
+<h3 class="text-center"> REGISTRAR USUARIO</h3>
+<form action="index.php/?c=Usuario&m=guardar" method="post" enctype="multipart/form-data" class="">
+    Apellido Paterno:
+    <input type="text" name="paterno" class="form-control">
 
-    Nombre del Producto:
+    Apellido Materno:
+    <input type="text" name="materno" class="form-control">
+
+    Nombres:
     <input type="text" name="nombre" class="form-control">
 
-    Precio del Producto:
-    <input type="number" name="precio" class="form-control">
+    Usuario:
+    <input type="text" name="usuario" class="form-control">
 
-    Descripcion del producto:
-    <!-- <input type="textarea" name="descripcion" class="form-control"><br> -->
-    <div class="mb-3">
-        <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
-    </div>
+    Contraseña:
+    <input type="password" name="contrasenia" class="form-control">
 
-    Foto del producto:
-    <input type="file" name="foto" class="form-control"><br>
     <div class="text-center">
-        <input type="submit" value="Guardar" class="btn btn-primary">
+        <input type="submit" value="REGISTRAR COMPRA" class="btn btn-success">
     </div>
 
 </form>

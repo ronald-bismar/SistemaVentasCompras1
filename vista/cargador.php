@@ -115,7 +115,9 @@
                             <!-- Sub menu -->
                             <ul>
                                 <li><a href="./?c=Reporte&m=prueba">Reporte de prueba</a></li>
-                                <li><a href="./?c=Reporte&m=producto">Reporte Productos</a></li>
+                                <li><a href="./?c=ReporteProducto&m=producto">Reporte Productos</a></li>
+                                <li><a href="./?c=ReporteCompra&m=compra">Reporte Compras</a></li>
+                                <li><a href="./?c=ReporteUsuario&m=usuario">Reporte Usuarios</a></li>
                             </ul>
                         </li>
                     </ul>
