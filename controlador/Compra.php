@@ -36,30 +36,24 @@ class Compra
     {
         require_once "modelo/CompraModelo.php";
         require_once "modelo/ProductoModelo.php";
-        
-        $compraModelo = new CompraModelo();
         $productoModelo = new ProductoModelo();
-        $compras = $compraModelo->seleccionar('*', 'estado = 1');
-        
-        foreach ($compras as &$compra) {
-            $id_producto = $compra['id_producto'];
-            $producto = $productoModelo->seleccionar('*', "estado = 1 AND id_producto = $id_producto");
-        
-                $compra['nombre_producto'] = $producto[0]['nombre'];
-                $compra['foto'] = $producto[0]['foto'];
-        }
-
-        // Paginación
-        $total = count($compras);
+        $productos = $productoModelo->seleccionar('*', 'estado = 1');
+        // var_dump($productos);
+        //paginacion
+        $total = count($productos);
         $cantidadElementosPagina = 5;
         $numeroVueltas = ceil($total / $cantidadElementosPagina);
         $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
         $inicio = ($pagina - 1) * $cantidadElementosPagina;
-        $compras = array_slice($compras, $inicio, $cantidadElementosPagina);
-
+        $productos = array_slice($productos, $inicio, $cantidadElementosPagina);
+        // var_dump($total);
+        // var_dump($numeroVueltas);
+        // var_dump($compra);
+        // exit();
         $vista = "vista/compra/listado.php";
         require_once "vista/cargador.php";
     }
+    
 
     function modificar()
     {
