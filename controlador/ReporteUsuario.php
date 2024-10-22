@@ -41,7 +41,7 @@ require_once('librerias/fpdf/fpdf.php');
 class PDF extends FPDF{
     function Header(){
         $this->SetFont('Arial', 'B', 16);
-        $this->cell(200,10,'REPORTE PRODUCTOS', '', 0 ,'C');
+        $this->cell(200,10,'REPORTE USUARIOS', '', 0 ,'C');
         $this->Ln();
         $this->Ln();
 

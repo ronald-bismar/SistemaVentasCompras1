@@ -37,11 +37,11 @@
                         <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                             <ul class="nav navbar-nav">
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php 
+                                    echo $_SESSION['usuario']['nombres'].' '.$_SESSION['usuario']['apellido_paterno'] ?> <b
                                             class="caret"></b></a>
                                     <ul class="dropdown-menu animated fadeInUp">
-                                        <li><a href="profile.html">Profile</a></li>
-                                        <li><a href="login.html">Logout</a></li>
+                                        <li><a href="./?c=Login&m=salir">Cerrar Sesion</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -118,6 +118,19 @@
                                 <li><a href="./?c=ReporteProducto&m=producto">Reporte Productos</a></li>
                                 <li><a href="./?c=ReporteCompra&m=compra">Reporte Compras</a></li>
                                 <li><a href="./?c=ReporteUsuario&m=usuario">Reporte Usuarios</a></li>
+                            </ul>
+                        </li>
+                        <!-- Estadisticas -->
+                        <li class="submenu">
+                            <a href="#">
+                                <i class="glyphicon glyphicon-file"></i> Estadistica
+                                <span class="caret pull-right"></span>
+                            </a>
+                            <!-- Sub menu -->
+                            <ul>
+                                <li><a href="./?c=Estadistica&m=compra">Estadistica de compra</a></li>
+                                <li><a href="./?c=Estadistica&m=producto">Estadistica ventas</a></li>
+                                <li><a href="./?c=Estadistica&m=usuario">Estadistica usuarios</a></li>
                             </ul>
                         </li>
                     </ul>

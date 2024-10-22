@@ -1,6 +1,13 @@
 <?php
 class ReporteCompra{
     function compra(){
+        //Para generar una imagen QR
+        require_once 'librerias/phpqrcode/qrlib.php';
+        $codeContents = base64_encode('Sistema Ventas'.date("Y-m-d H:i:s")."Password");
+        $FilePath = "imagenes/qr/qr.png";
+        QRcode::png($codeContents,$FilePath);
+
+
         require_once 'modelo/CompraModelo.php';
         //Realizamos la consulta a la BD
         $compraModelo = new CompraModelo();
@@ -41,6 +48,8 @@ require_once('librerias/fpdf/fpdf.php');
 class PDF extends FPDF{
     function Header(){
         $this->SetFont('Arial', 'B', 16);
+        $this->Image('imagenes/logo/logo.png', 15 ,10 ,20 ,20);
+        $this->Image('imagenes/qr/qr.png', 250 ,10 ,20 ,20);
         $this->cell(200,10,'REPORTE COMPRAS', '', 0 ,'C');
         $this->Ln();
         $this->Ln();
